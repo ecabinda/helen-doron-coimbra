@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Helen Doron English Coimbra • Líder Mundial em Inglês para Crianças e Jovens</title>
+  <meta name="description" content="Aprender inglês a brincar dos 3 meses aos 19 anos em Coimbra. Método comprovado internacionalmente com reforço positivo, turmas pequenas e professores certificados. Agende a sua aula experimental gratuita!" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo-helen-doron.png" />
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  
+  <!-- Canvas Confetti (Animação naocodei.com) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#006194",
+            "primary-dark": "#004b73",
+            "primary-container": "#007bb9",
+            "primary-fixed": "#cce5ff",
+            "primary-fixed-dim": "#93ccff",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#fdfcff",
+            
+            "secondary": "#e21e49",
+            "secondary-dark": "#ba0035",
+            "secondary-container": "#ffdada",
+            "on-secondary": "#ffffff",
+            
+            "tertiary": "#f59e0b",
+            "tertiary-dark": "#825100",
+            "tertiary-container": "#ffddb8",
+            "on-tertiary": "#ffffff",
+            
+            "surface": "#faf8ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f2f3ff",
+            "surface-container": "#eaedff",
+            "surface-container-high": "#e2e7ff",
+            "surface-container-highest": "#dae2fd",
+            "on-surface": "#131b2e",
+            "on-surface-variant": "#475569",
+            "background": "#faf8ff"
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          },
+          animation: {
+            'float-slow': 'float 4.5s ease-in-out infinite',
+            'float-delayed': 'float 4.5s ease-in-out 2.25s infinite',
+            'pulse-subtle': 'pulseSubtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'marquee': 'marquee 28s linear infinite',
+            'shimmer': 'shimmer 2.5s infinite linear'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            pulseSubtle: {
+              '0%, 100%': { opacity: 1, transform: 'scale(1)' },
+              '50%': { opacity: 0.92, transform: 'scale(1.025)' },
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' }
+            },
+            shimmer: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(100%)' }
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Spotlight / Luz que Segue o Rato (naocodei.com) */
+    .spotlight-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      top: var(--mouse-y, -100px);
+      left: var(--mouse-x, -100px);
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(0, 97, 148, 0.12) 0%, rgba(226, 30, 73, 0.05) 45%, transparent 70%);
+      transform: translate(-50%, -50%);
+      border-radius: 9999px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      z-index: 1;
+    }
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Text Rotator / Palavras que se Alternam */
+    .word-rotator-wrapper {
+      display: inline-block;
+      position: relative;
+      vertical-align: bottom;
+      overflow: hidden;
+      height: 1.22em;
+    }
+    .rotating-word {
+      display: inline-block;
+      color: #e21e49;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+      white-space: nowrap;
+    }
+
+    /* Accordion FAQ */
+    .faq-content {
+      transition: max-height 0.35s cubic-bezier(0, 1, 0, 1), opacity 0.25s ease;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f2f3ff;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #93ccff;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #007bb9;
+    }
+
+    /* Elastic Button (naocodei.com) */
+    .btn-elastic {
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease;
+    }
+    .btn-elastic:hover {
+      transform: translateY(-2.5px) scale(1.015);
+    }
+    .btn-elastic:active {
+      transform: translateY(1px) scale(0.985);
+    }
+
+    /* Reveal On Scroll */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-on-scroll.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-surface antialiased font-sans selection:bg-primary-fixed selection:text-primary">
+
+  <!-- ========================================================
+       TOP ANNOUNCEMENT BAR (Estilo Referência Wall Street English)
+  ======================================================== -->
+  <div class="bg-gradient-to-r from-primary via-primary-container to-secondary text-white text-xs sm:text-sm font-semibold py-2 px-4 shadow-sm relative z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2 mx-auto sm:mx-0">
+        <span class="inline-flex items-center justify-center bg-white/20 text-white rounded-full px-2.5 py-0.5 text-[11px] uppercase tracking-wider font-extrabold animate-pulse">
+          Ano Letivo 2025/2026
+        </span>
+        <span class="truncate">Inscrições abertas em Coimbra: reserve a sua <strong>Aula Experimental Gratuita</strong>!</span>
+      </div>
+      <a href="#agendamento" class="hidden sm:inline-flex items-center gap-1 bg-white text-primary hover:bg-yellow-300 hover:text-on-surface px-3 py-1 rounded-full text-xs font-bold transition-colors shadow-sm shrink-0">
+        <span>Garantir Vaga</span>
+        <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       HEADER FIXO COM O NOVO LOGÓTIPO OFICIAL CRISTALINO
+  ======================================================== -->
+  <header id="mainHeader" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-[0_2px_12px_rgba(0,0,0,0.06)] mt-0">
+    <div class="max-w-7xl mx-auto h-20 px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Logótipo Oficial -->
+      <a href="#" class="flex items-center gap-3 group focus:outline-none shrink-0" aria-label="Helen Doron English Coimbra">
+        <div class="w-12 h-12 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-secondary via-tertiary to-primary shadow-[0_2px_10px_rgba(0,97,148,0.2)] transition-transform duration-300 group-hover:scale-105 shrink-0 bg-white flex items-center justify-center">
+          <img src="assets/logo-helen-doron.png" alt="Logótipo Oficial Helen Doron English" class="w-full h-full object-contain rounded-full" />
+        </div>
+        <div class="flex flex-col">
+          <span class="font-extrabold text-xl text-primary leading-tight tracking-tight group-hover:text-primary-container transition-colors">Helen Doron</span>
+          <span class="text-[11px] text-secondary uppercase font-bold tracking-widest flex items-center gap-1">
+            <span>English Coimbra</span>
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          </span>
+        </div>
+      </a>
+
+      <!-- Navigation Desktop Links -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-700">
+        <a href="#metodo" class="hover:text-primary transition-colors py-1 px-2 rounded-lg hover:bg-surface-container-low">Método & Idades</a>
+        <a href="#espaco" class="hover:text-primary transition-colors py-1 px-2 rounded-lg hover:bg-surface-container-low">Espaço Escolar</a>
+        <a href="#diferenciais" class="hover:text-primary transition-colors py-1 px-2 rounded-lg hover:bg-surface-container-low">Porquê Nós</a>
+        <a href="#avaliacoes" class="hover:text-primary transition-colors py-1 px-2 rounded-lg hover:bg-surface-container-low">Avaliações</a>
+        <a href="#faq" class="hover:text-primary transition-colors py-1 px-2 rounded-lg hover:bg-surface-container-low">Dúvidas</a>
+        <a href="#contactos" class="hover:text-primary transition-colors py-1 px-2 rounded-lg hover:bg-surface-container-low">Onde Estamos</a>
+      </nav>
+
+      <!-- Right CTAs & Contact Quick Buttons -->
+      <div class="flex items-center gap-3">
+        <!-- Direct Phone -->
+        <a href="tel:+351239442407" class="hidden md:flex items-center gap-2 px-3.5 py-2 rounded-full bg-surface-container text-primary hover:bg-primary hover:text-white transition-all text-xs font-bold border border-primary/10">
+          <span class="material-symbols-outlined text-[18px]">call</span>
+          <span>+351 239 442 407</span>
+        </a>
+
+        <!-- Primary Action Button -->
+        <a href="#agendamento" class="btn-elastic inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-secondary hover:bg-secondary-dark text-white font-bold text-xs sm:text-sm shadow-[0_4px_14px_rgba(226,30,73,0.35)]">
+          <span class="material-symbols-outlined text-[18px]">event_available</span>
+          <span>Aula Experimental</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none" aria-label="Abrir Menu">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-slate-200 px-6 py-4 flex-col gap-3 shadow-xl">
+      <a href="#metodo" class="py-2 text-slate-700 font-semibold border-b border-slate-100 flex items-center justify-between mobile-nav-link">
+        <span>Método & Idades</span>
+        <span class="material-symbols-outlined text-sm">chevron_right</span>
+      </a>
+      <a href="#espaco" class="py-2 text-slate-700 font-semibold border-b border-slate-100 flex items-center justify-between mobile-nav-link">
+        <span>Espaço Escolar</span>
+        <span class="material-symbols-outlined text-sm">chevron_right</span>
+      </a>
+      <a href="#diferenciais" class="py-2 text-slate-700 font-semibold border-b border-slate-100 flex items-center justify-between mobile-nav-link">
+        <span>Porquê Helen Doron</span>
+        <span class="material-symbols-outlined text-sm">chevron_right</span>
+      </a>
+      <a href="#avaliacoes" class="py-2 text-slate-700 font-semibold border-b border-slate-100 flex items-center justify-between mobile-nav-link">
+        <span>Avaliações de Pais</span>
+        <span class="material-symbols-outlined text-sm">chevron_right</span>
+      </a>
+      <a href="#faq" class="py-2 text-slate-700 font-semibold border-b border-slate-100 flex items-center justify-between mobile-nav-link">
+        <span>Perguntas Frequentes</span>
+        <span class="material-symbols-outlined text-sm">chevron_right</span>
+      </a>
+      <a href="#contactos" class="py-2 text-slate-700 font-semibold flex items-center justify-between mobile-nav-link">
+        <span>Contactos & Mapa</span>
+        <span class="material-symbols-outlined text-sm">chevron_right</span>
+      </a>
+      <div class="pt-3 flex flex-col gap-2">
+        <a href="https://wa.me/351239442407?text=Ola!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20na%20Helen%20Doron%20Coimbra." target="_blank" class="w-full py-2.5 rounded-full bg-[#25D366] text-white font-bold text-center flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">chat</span>
+          <span>Falar pelo WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-28">
+
+    <!-- ========================================================
+         HERO SECTION: Design Humano, Vibrante e de Alta Conversão
+    ======================================================== -->
+    <section class="relative w-full overflow-hidden py-10 lg:py-16 bg-gradient-to-b from-surface via-surface-container-low to-background">
+      
+      <!-- Fundo Decorativo Suave -->
+      <div class="absolute -top-16 -left-16 w-80 h-80 rounded-full bg-primary-fixed/40 blur-3xl pointer-events-none"></div>
+      <div class="absolute top-1/3 -right-20 w-96 h-96 rounded-full bg-secondary-container/40 blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          
+          <!-- Coluna Esquerda: Mensagem com Tipografia Refinada -->
+          <div class="lg:col-span-7 flex flex-col items-start gap-5 reveal-on-scroll">
+            
+            <!-- Badge de Prestígio e Confiança -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-sm border border-slate-200/80">
+              <span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+              <span class="text-xs sm:text-sm font-bold text-primary">Centro Oficial Helen Doron Coimbra</span>
+              <span class="text-slate-300">•</span>
+              <span class="text-xs sm:text-sm font-semibold text-slate-600">Desde 1985 no Mundo</span>
+            </div>
+
+            <!-- Título Principal com Linhas Harmoniosas (Sem quebras erradas) -->
+            <h1 class="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-primary tracking-tight leading-[1.12] hyphens-none">
+              Aprender Inglês com <br />
+              <span class="word-rotator-wrapper text-secondary">
+                <span id="rotatingWord" class="rotating-word">brincadeiras.</span>
+              </span>
+              <br />
+              <span class="text-slate-900 block mt-1">O Futuro Começa Aqui.</span>
+            </h1>
+
+            <!-- Subtítulo Acessível e Convincente -->
+            <p class="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">
+              O método pioneiro que ensina inglês da mesma forma intuitiva que os bebés aprendem a língua materna: 
+              <strong>sem tradução mecânica</strong>, com <strong>reforço positivo</strong> diário e uma metodologia lúdica comprovada por mais de 3 milhões de alunos.
+            </p>
+
+            <!-- Estatísticas Rápidas Inspiradas na Referência WSE -->
+            <div class="grid grid-cols-3 gap-3 w-full max-w-lg py-3 border-y border-slate-200/80 my-1">
+              <div class="flex flex-col">
+                <span class="text-2xl sm:text-3xl font-extrabold text-primary counter-value" data-target="40">0</span>
+                <span class="text-[11px] sm:text-xs text-slate-500 font-medium">Anos de Sucesso</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-2xl sm:text-3xl font-extrabold text-secondary counter-value" data-target="3">0</span>
+                <span class="text-[11px] sm:text-xs text-slate-500 font-medium">Milhões de Alunos</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-2xl sm:text-3xl font-extrabold text-amber-600 counter-value" data-target="98">0</span>
+                <span class="text-[11px] sm:text-xs text-slate-500 font-medium">% Pais Satisfeitos</span>
+              </div>
+            </div>
+
+            <!-- CTA Duplo e Garantia -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto pt-1">
+              <a href="#agendamento" class="btn-elastic inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-base shadow-[0_10px_25px_rgba(0,97,148,0.3)]">
+                <span>Agendar Aula Gratuita</span>
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+              </a>
+              <a href="https://wa.me/351239442407?text=Ola!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20da%20Helen%20Doron%20Coimbra." target="_blank" class="btn-elastic inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-white hover:bg-slate-50 text-slate-800 font-bold text-base border border-slate-200 shadow-sm">
+                <span class="text-[#25D366] text-xl">●</span>
+                <span>WhatsApp Coimbra</span>
+              </a>
+            </div>
+
+            <!-- Micro Prova Social -->
+            <div class="flex items-center gap-2.5 pt-1">
+              <div class="flex text-amber-400">
+                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+              <span class="text-xs sm:text-sm text-slate-600 font-medium">
+                <strong>4.9 / 5.0</strong> em avaliações Google • <em>Famílias de Coimbra recomendam</em>
+              </span>
+            </div>
+
+          </div>
+
+          <!-- Coluna Direita: Showcase Visual Humano com Espaço Real & Logótipo Integrado com Perfeição -->
+          <div class="lg:col-span-5 relative flex items-center justify-center reveal-on-scroll">
+            
+            <div class="relative w-full max-w-md bg-white rounded-3xl p-5 shadow-2xl border border-slate-200/90 flex flex-col gap-4">
+              
+              <!-- Banner com a Foto Real da Sala Lúdica e o Logótipo em Selo Oficial Flutuante -->
+              <div class="relative w-full h-64 sm:h-72 rounded-2xl overflow-hidden shadow-inner group">
+                <img src="assets/card2-ludica.jpg" alt="Ambiente de Aprendizagem Helen Doron Coimbra" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                
+                <!-- Overlay Gradiente Elegante -->
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
+
+                <!-- Selo Oficial Helen Doron Limpo e Cristalino -->
+                <div class="absolute top-4 left-4 flex items-center gap-2.5 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-lg border border-white">
+                  <div class="w-7 h-7 rounded-full overflow-hidden bg-white shrink-0 flex items-center justify-center">
+                    <img src="assets/logo-helen-doron.png" alt="Logótipo HD" class="w-full h-full object-contain" />
+                  </div>
+                  <span class="text-xs font-extrabold text-primary">Centro Oficial Coimbra</span>
+                </div>
+
+                <!-- Tag "Kids Love It!" no Topo Direito -->
+                <div class="absolute top-4 right-4 bg-secondary text-white px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1 animate-bounce">
+                  <span class="material-symbols-outlined text-[15px]">favorite</span>
+                  <span class="text-[11px] font-extrabold uppercase tracking-wide">Kids Love It! 🎵</span>
+                </div>
+
+                <!-- Informação Sobreposta na Foto -->
+                <div class="absolute bottom-4 left-4 right-4 text-white flex flex-col">
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-300">Espaço Próprio em Coimbra</span>
+                  <span class="text-lg font-bold leading-tight">Salas acolhedoras, seguras e alegres</span>
+                </div>
+              </div>
+
+              <!-- Cartão de Ação Rápida no Hero (Inspirado no WSE) -->
+              <div class="bg-surface-container-low rounded-2xl p-4 flex flex-col gap-3 border border-slate-200/60">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-xs font-bold text-slate-800">Turmas Reduzidas (4 a 8 Alunos)</span>
+                  </div>
+                  <span class="text-[11px] font-bold text-secondary uppercase bg-secondary-container px-2 py-0.5 rounded-full">3m aos 19 anos</span>
+                </div>
+
+                <div class="flex items-center justify-between text-xs text-slate-600 pt-1 border-t border-slate-200/50">
+                  <span class="flex items-center gap-1 font-medium"><span class="material-symbols-outlined text-primary text-[16px]">verified</span> Cambridge Prep</span>
+                  <span class="flex items-center gap-1 font-medium"><span class="material-symbols-outlined text-amber-500 text-[16px]">star</span> 4.9 no Google</span>
+                  <span class="flex items-center gap-1 font-medium"><span class="material-symbols-outlined text-emerald-600 text-[16px]">location_on</span> Baixa Coimbra</span>
+                </div>
+
+                <a href="#agendamento" class="btn-elastic w-full py-2.5 rounded-xl bg-secondary hover:bg-secondary-dark text-white font-extrabold text-xs text-center shadow-md flex items-center justify-center gap-1.5">
+                  <span>Marcar Demonstração Gratuita</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         MARQUEE BANNER: Logos, Acreditações e Pilares (naocodei.com)
+    ======================================================== -->
+    <div class="w-full bg-white border-y border-slate-200/80 py-4 overflow-hidden relative">
+      <div class="flex w-[200%] animate-marquee whitespace-nowrap items-center text-slate-600 font-bold text-xs sm:text-sm">
+        
+        <!-- Bloco 1 -->
+        <div class="flex items-center gap-10 sm:gap-14 px-4 shrink-0">
+          <span class="flex items-center gap-2 text-primary"><span class="material-symbols-outlined">verified</span> Preparatório Oficial Cambridge</span>
+          <span class="flex items-center gap-2 text-secondary"><span class="material-symbols-outlined">workspace_premium</span> 40+ Anos de Liderança Mundial</span>
+          <span class="flex items-center gap-2 text-amber-600"><span class="material-symbols-outlined">menu_book</span> Quadro Europeu Comum (QECR)</span>
+          <span class="flex items-center gap-2 text-emerald-600"><span class="material-symbols-outlined">record_voice_over</span> Escuta Diária Passiva Patenteada</span>
+          <span class="flex items-center gap-2 text-primary"><span class="material-symbols-outlined">smart_toy</span> Apps & Jogos Kangi Club</span>
+          <span class="flex items-center gap-2 text-secondary"><span class="material-symbols-outlined">hotel_class</span> 5.0 Google Reviews Coimbra</span>
+        </div>
+
+        <!-- Bloco 2 Repetido para Infinite Loop -->
+        <div class="flex items-center gap-10 sm:gap-14 px-4 shrink-0">
+          <span class="flex items-center gap-2 text-primary"><span class="material-symbols-outlined">verified</span> Preparatório Oficial Cambridge</span>
+          <span class="flex items-center gap-2 text-secondary"><span class="material-symbols-outlined">workspace_premium</span> 40+ Anos de Liderança Mundial</span>
+          <span class="flex items-center gap-2 text-amber-600"><span class="material-symbols-outlined">menu_book</span> Quadro Europeu Comum (QECR)</span>
+          <span class="flex items-center gap-2 text-emerald-600"><span class="material-symbols-outlined">record_voice_over</span> Escuta Diária Passiva Patenteada</span>
+          <span class="flex items-center gap-2 text-primary"><span class="material-symbols-outlined">smart_toy</span> Apps & Jogos Kangi Club</span>
+          <span class="flex items-center gap-2 text-secondary"><span class="material-symbols-outlined">hotel_class</span> 5.0 Google Reviews Coimbra</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================
+         INTERACTIVE AGE SELECTOR (Inspirado no Curso Finder da WSE)
+    ======================================================== -->
+    <section id="metodo" class="py-16 lg:py-24 bg-white relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto flex flex-col gap-3 reveal-on-scroll">
+          <span class="text-xs font-bold text-secondary uppercase tracking-widest">Caminho de Aprendizagem Personalizado</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-primary">Qual é a Idade do Seu Filho?</h2>
+          <p class="text-slate-600 text-sm sm:text-base">
+            Cada fase da infância e adolescência tem necessidades cognitivas distintas. Clique nas etapas para descobrir como o método Helen Doron se adapta a ele:
+          </p>
+        </div>
+
+        <!-- Tabs de Idade Interativas -->
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-8 reveal-on-scroll">
+          <button class="age-tab-btn active px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 bg-primary text-white shadow-md" data-age="babies">
+            👶 3 Meses a 2 Anos (Bebés)
+          </button>
+          <button class="age-tab-btn px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 bg-surface-container text-slate-700 hover:bg-slate-200" data-age="kinder">
+            🧒 3 a 5 Anos (Crianças Pequenas)
+          </button>
+          <button class="age-tab-btn px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 bg-surface-container text-slate-700 hover:bg-slate-200" data-age="kids">
+            🎒 6 a 11 Anos (Ensino Básico)
+          </button>
+          <button class="age-tab-btn px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 bg-surface-container text-slate-700 hover:bg-slate-200" data-age="teens">
+            🎓 12 a 19 Anos (Teens & Cambridge)
+          </button>
+        </div>
+
+        <!-- Conteúdos Dinâmicos das Tabs -->
+        <div class="mt-10 max-w-5xl mx-auto">
+          
+          <!-- Tab 1: Bebés -->
+          <div id="tab-babies" class="age-tab-content bg-gradient-to-br from-surface to-surface-container p-6 sm:p-10 rounded-3xl border border-slate-200/80 shadow-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-7 flex flex-col gap-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 text-xs font-bold w-fit">
+                Baby's Best Start & Toddler's Best Start
+              </div>
+              <h3 class="text-2xl font-extrabold text-primary">Inglês desde o Berço com Amor e Conexão</h3>
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Desenvolve a audição fonética inglesa enquanto o cérebro do bebé cria as conexões neurológicas primárias. 
+                Os pais participam ativamente em dinâmicas de afeto, canções sensoriais e jogos de estímulo motor.
+              </p>
+              <ul class="space-y-2 text-sm text-slate-700">
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Estimulação sensorial auditiva diária</li>
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Fortalecimento do vínculo afetivo mãe/pai e bebé</li>
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> 0% pressão, 100% carinho e brincadeira</li>
+              </ul>
+              <div class="pt-2">
+                <a href="#agendamento" class="btn-elastic inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-bold text-xs sm:text-sm">
+                  <span>Experimentar Aula para Bebés</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+            <div class="md:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center flex flex-col items-center justify-center">
+              <span class="text-5xl mb-3">🍼</span>
+              <span class="font-bold text-slate-800 text-lg">Porquê tão cedo?</span>
+              <p class="text-xs text-slate-500 mt-2">
+                Até aos 7 anos, o cérebro humano absorve novos idiomas com a mesma facilidade da língua materna. Não existe sotaque estrangeiro quando a audição é estimulada cedo!
+              </p>
+            </div>
+          </div>
+
+          <!-- Tab 2: Crianças Pequenas (Kinder) -->
+          <div id="tab-kinder" class="age-tab-content hidden bg-gradient-to-br from-surface to-surface-container p-6 sm:p-10 rounded-3xl border border-slate-200/80 shadow-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-7 flex flex-col gap-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold w-fit">
+                It's a Baby Dragon & Fun with Flupe
+              </div>
+              <h3 class="text-2xl font-extrabold text-primary">Histórias, Rimas e Personagens Cativantes</h3>
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                As crianças aprendem vocabulário prático e estruturas completas de conversação através das aventuras mágicas de Flupe e Paul Ward. 
+                A língua torna-se uma ferramenta viva para brincar, correr e cantar.
+              </p>
+              <ul class="space-y-2 text-sm text-slate-700">
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Teatro infantil, canções exclusivas e movimento físico</li>
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Jogos no chão em círculo sem secretárias rígidas</li>
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Vocabulário ativo e pronúncia nativa britânica</li>
+              </ul>
+              <div class="pt-2">
+                <a href="#agendamento" class="btn-elastic inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-bold text-xs sm:text-sm">
+                  <span>Experimentar Aula 3-5 Anos</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+            <div class="md:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center flex flex-col items-center justify-center">
+              <span class="text-5xl mb-3">🎭</span>
+              <span class="font-bold text-slate-800 text-lg">Aprendizagem 100% Lúdica</span>
+              <p class="text-xs text-slate-500 mt-2">
+                A criança não sabe que está numa "aula" formal: para ela, é o momento mais divertido da semana, repleto de brincadeiras e amigos em Coimbra.
+              </p>
+            </div>
+          </div>
+
+          <!-- Tab 3: Kids (6-11 anos) -->
+          <div id="tab-kids" class="age-tab-content hidden bg-gradient-to-br from-surface to-surface-container p-6 sm:p-10 rounded-3xl border border-slate-200/80 shadow-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-7 flex flex-col gap-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold w-fit">
+                Jump with Joey, More Joey & Paul Ward Explores
+              </div>
+              <h3 class="text-2xl font-extrabold text-primary">Leitura, Escrita Criativa e Diálogo Espontâneo</h3>
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Consolidação da fluência falada com a transição natural para a leitura fonética e escrita. 
+                Aplicações interativas em realidade aumentada e clubes digitais completam a experiência dos alunos.
+              </p>
+              <ul class="space-y-2 text-sm text-slate-700">
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Confiança máxima para falar e apresentar ideias</li>
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Apoio ao sucesso escolar e notas no ensino regular</li>
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Livros com Realidade Aumentada (3D Magic Wand)</li>
+              </ul>
+              <div class="pt-2">
+                <a href="#agendamento" class="btn-elastic inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-bold text-xs sm:text-sm">
+                  <span>Experimentar Aula 6-11 Anos</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+            <div class="md:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center flex flex-col items-center justify-center">
+              <span class="text-5xl mb-3">🚀</span>
+              <span class="font-bold text-slate-800 text-lg">Tecnologia Integrada</span>
+              <p class="text-xs text-slate-500 mt-2">
+                Acesso à plataforma Kangi Club e à rádio Helen Doron Radio mundial, onde crianças ouvem e interagem com jovens de todo o mundo.
+              </p>
+            </div>
+          </div>
+
+          <!-- Tab 4: Teens (12-19 anos) -->
+          <div id="tab-teens" class="age-tab-content hidden bg-gradient-to-br from-surface to-surface-container p-6 sm:p-10 rounded-3xl border border-slate-200/80 shadow-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-7 flex flex-col gap-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-bold w-fit">
+                Teen English & Certificação Cambridge (B2 First / C1 Advanced)
+              </div>
+              <h3 class="text-2xl font-extrabold text-primary">Temas Globais, Debate e Certificação Internacional</h3>
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Inglês moderno com temas contemporâneos (ambiente, música, tecnologia, sociedade) que motivam os jovens. 
+                Preparação direta para os exames oficiais Cambridge com as melhores taxas de aprovação.
+              </p>
+              <ul class="space-y-2 text-sm text-slate-700">
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Preparação e simulações para Cambridge B1, B2 First e C1</li>
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Fluência para mobilidade internacional, Erasmus e carreiras globais</li>
+                <li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> Pensamento crítico e oratória sem timidez</li>
+              </ul>
+              <div class="pt-2">
+                <a href="#agendamento" class="btn-elastic inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-bold text-xs sm:text-sm">
+                  <span>Experimentar Aula para Jovens</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+            <div class="md:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center flex flex-col items-center justify-center">
+              <span class="text-5xl mb-3">🎓</span>
+              <span class="font-bold text-slate-800 text-lg">Certificado Vitalício</span>
+              <p class="text-xs text-slate-500 mt-2">
+                Os certificados Cambridge abrem as portas das melhores universidades e empresas em Portugal e no estrangeiro.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         ESPAÇO ESCOLAR EM COIMBRA (Bento Grid com Spotlight Effect do naocodei)
+    ======================================================== -->
+    <section id="espaco" class="w-full py-16 lg:py-24 bg-surface-container-low">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+        
+        <!-- Header da Secção -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 reveal-on-scroll">
+          <div class="max-w-2xl flex flex-col gap-2">
+            <span class="text-xs font-bold text-secondary uppercase tracking-widest">Espaço & Instalações</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-on-surface">Conheça o Nosso Centro em Coimbra</h2>
+            <p class="text-slate-600 text-sm sm:text-base">
+              Salas alegres, luminosas, seguras e concebidas à medida da imaginação das crianças em cada fase do seu desenvolvimento.
+            </p>
+          </div>
+          <a href="https://maps.google.com/?q=Rua+Padre+Estevao+Cabral+Coimbra" target="_blank" class="flex items-center gap-2 text-primary font-bold text-sm hover:underline shrink-0">
+            <span class="material-symbols-outlined text-secondary">pin_drop</span>
+            <span>Rua Padre Estêvão Cabral, Coimbra</span>
+          </a>
+        </div>
+
+        <!-- Bento Grid com Efeito Spotlight (Luz que segue o rato) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Card 1: Fachada & Receção -->
+          <div class="spotlight-card group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-200/80 reveal-on-scroll">
+            <div class="relative h-56 w-full overflow-hidden bg-slate-100">
+              <img src="assets/card1-fachada.jpg" alt="Fachada Helen Doron Coimbra" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                Exterior & Receção
+              </div>
+            </div>
+            <div class="p-6 flex flex-col gap-2 flex-1">
+              <h3 class="text-lg font-bold text-slate-900">Fachada Exterior & Boas-Vindas</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Sinalética oficial Helen Doron, montra envidraçada acolhedora, acessibilidade plana e ambiente seguro no coração de Coimbra.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: Salas Lúdicas -->
+          <div class="spotlight-card group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-200/80 reveal-on-scroll">
+            <div class="relative h-56 w-full overflow-hidden bg-slate-100">
+              <img src="assets/card2-ludica.jpg" alt="Sala de Atividades Lúdicas Helen Doron" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute top-3 left-3 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                Salas Lúdicas
+              </div>
+            </div>
+            <div class="p-6 flex flex-col gap-2 flex-1">
+              <h3 class="text-lg font-bold text-slate-900">Sala de Conforto & Tapete</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Equipada com sofás macios, tapete verde para dinâmicas em círculo no chão e mesinhas infantis coloridas para trabalhos manuais.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3: Material Didático Exclusivo -->
+          <div class="spotlight-card group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-200/80 reveal-on-scroll">
+            <div class="relative h-56 w-full overflow-hidden bg-slate-100">
+              <img src="assets/card3-material.jpg" alt="Material Pedagógico Exclusivo Helen Doron" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute top-3 left-3 bg-primary-container text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                Recursos 360°
+              </div>
+            </div>
+            <div class="p-6 flex flex-col gap-2 flex-1">
+              <h3 class="text-lg font-bold text-slate-900">Mochilas & Didática Global</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Acesso a mochilas pedagógicas, livros sonoros, cartões ilustrados e tecnologia imersiva patenteada para acelerar a fluência auditiva.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 4: Dinâmica Musical & Emoção -->
+          <div class="spotlight-card group flex flex-col bg-gradient-to-br from-primary-fixed to-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-200/80 reveal-on-scroll">
+            <div class="relative h-56 w-full overflow-hidden flex flex-col items-center justify-center p-6 text-center bg-primary-fixed/60">
+              <span class="material-symbols-outlined text-secondary text-5xl mb-2">music_note</span>
+              <span class="text-xl font-extrabold text-primary uppercase tracking-tight">Kids Love It!</span>
+              <span class="text-xs font-semibold text-slate-600">Música, Ritmo & Teatro</span>
+              <div class="absolute top-3 left-3 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                Metodologia Viva
+              </div>
+            </div>
+            <div class="p-6 flex flex-col gap-2 flex-1 bg-white">
+              <h3 class="text-lg font-bold text-slate-900">Imersão Musical Natural</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Canções infantis e histórias especialmente compostas com cadência fonética inglesa que fixam o vocabulário de modo 100% intuitivo.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         TABELA COMPARATIVA: Helen Doron vs Ensino Tradicional (Estilo WSE)
+    ======================================================== -->
+    <section id="diferenciais" class="py-16 lg:py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto flex flex-col gap-3 reveal-on-scroll">
+          <span class="text-xs font-bold text-secondary uppercase tracking-widest">A Diferença Que Transforma Resultados</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-primary">Porquê Escolher Helen Doron Coimbra?</h2>
+          <p class="text-slate-600 text-sm sm:text-base">
+            Descubra por que a nossa abordagem produz crianças naturalmente bilíngues e felizes em oposição às metodologias tradicionais de memorização.
+          </p>
+        </div>
+
+        <div class="mt-12 overflow-x-auto reveal-on-scroll">
+          <table class="w-full text-left border-collapse bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-200">
+            <thead>
+              <tr class="border-b border-slate-200">
+                <th class="p-5 text-sm sm:text-base font-bold text-slate-700 bg-slate-50 w-2/5">Critério de Aprendizagem</th>
+                <th class="p-5 text-sm sm:text-base font-extrabold text-white bg-primary w-3/10 text-center">
+                  <div class="flex items-center justify-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                    <span>Helen Doron Coimbra</span>
+                  </div>
+                </th>
+                <th class="p-5 text-sm sm:text-base font-bold text-slate-500 bg-slate-100 w-3/10 text-center">Escola / Ensino Tradicional</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-xs sm:text-sm">
+              <tr>
+                <td class="p-5 font-bold text-slate-800">Tamanho da Turma</td>
+                <td class="p-5 bg-primary/5 text-center font-extrabold text-primary">Reduzido (4 a 8 alunos)</td>
+                <td class="p-5 text-center text-slate-500">20 a 28 alunos por turma</td>
+              </tr>
+              <tr>
+                <td class="p-5 font-bold text-slate-800">Modo de Aprendizagem</td>
+                <td class="p-5 bg-primary/5 text-center font-extrabold text-emerald-700">Imersão natural e lúdica (como língua materna)</td>
+                <td class="p-5 text-center text-slate-500">Gramática abstrata e listas de vocabulário</td>
+              </tr>
+              <tr>
+                <td class="p-5 font-bold text-slate-800">Ambiente de Sala</td>
+                <td class="p-5 bg-primary/5 text-center font-extrabold text-primary">Tapetes, movimento, canções e jogos físicos</td>
+                <td class="p-5 text-center text-slate-500">Secretárias alinhadas e silêncio imposto</td>
+              </tr>
+              <tr>
+                <td class="p-5 font-bold text-slate-800">Reforço e Avaliação</td>
+                <td class="p-5 bg-primary/5 text-center font-extrabold text-emerald-700">Reforço positivo contínuo, zero pressão</td>
+                <td class="p-5 text-center text-slate-500">Foco em testes punitivos e notas</td>
+              </tr>
+              <tr>
+                <td class="p-5 font-bold text-slate-800">Fluência e Pronúncia</td>
+                <td class="p-5 bg-primary/5 text-center font-extrabold text-primary">Espontânea, auditiva e sem sotaque artificial</td>
+                <td class="p-5 text-center text-slate-500">Tradução mental com hesitação e timidez</td>
+              </tr>
+              <tr>
+                <td class="p-5 font-bold text-slate-800">Preparação Cambridge</td>
+                <td class="p-5 bg-primary/5 text-center font-extrabold text-emerald-700">Centro de preparação oficial com certificação internacional</td>
+                <td class="p-5 text-center text-slate-500">Geralmente não incluído</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-8 text-center">
+          <a href="#agendamento" class="btn-elastic inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-secondary text-white font-bold text-sm shadow-md">
+            <span>Experimente a Diferença Numa Aula Gratuita</span>
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         PROVA SOCIAL & AVALIAÇÕES DE PAIS DE COIMBRA
+    ======================================================== -->
+    <section id="avaliacoes" class="w-full py-16 lg:py-24 bg-surface-container-low">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+        
+        <!-- Top Badge Rating Highlight -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-6 bg-white p-6 sm:p-8 rounded-3xl shadow-md max-w-2xl mx-auto text-center sm:text-left border border-slate-200/80 reveal-on-scroll">
+          <div class="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 shrink-0">
+            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex items-center justify-center sm:justify-start gap-1 text-amber-400">
+              <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="text-2xl font-extrabold text-slate-900 ml-2">4,9 / 5,0</span>
+            </div>
+            <span class="text-xs sm:text-sm text-slate-600 font-medium mt-1">
+              Avaliação máxima atribuída por famílias de Coimbra e região Centro no Google Maps.
+            </span>
+          </div>
+        </div>
+
+        <!-- Grelha de Testemunhos Reais -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Testemunho 1 -->
+          <div class="flex flex-col justify-between p-6 sm:p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all border border-slate-200/80 reveal-on-scroll">
+            <div class="flex flex-col gap-4">
+              <div class="flex text-amber-400">
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+              <p class="text-sm sm:text-base text-slate-700 italic leading-relaxed">
+                “Excelentes professores, uma escola com excelente ambiente de aprendizagem. O meu filho vai com um sorriso de orelha a orelha para cada aula!”
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-6 border-t border-slate-100 mt-6">
+              <div class="w-11 h-11 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-sm">
+                MR
+              </div>
+              <div class="flex flex-col">
+                <span class="text-sm font-bold text-slate-900">Marta R.</span>
+                <span class="text-xs text-slate-500">Mãe do Tomás (5 anos) • Coimbra</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testemunho 2 -->
+          <div class="flex flex-col justify-between p-6 sm:p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all border border-slate-200/80 reveal-on-scroll">
+            <div class="flex flex-col gap-4">
+              <div class="flex text-amber-400">
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+              <p class="text-sm sm:text-base text-slate-700 italic leading-relaxed">
+                “As crianças adoram e aprendem alegremente. Professoras muito empenhadas e carinhosas que sabem manter o interesse aceso sem sobrecarregar.”
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-6 border-t border-slate-100 mt-6">
+              <div class="w-11 h-11 rounded-full bg-secondary-container flex items-center justify-center text-secondary font-bold text-sm">
+                TS
+              </div>
+              <div class="flex flex-col">
+                <span class="text-sm font-bold text-slate-900">Tiago S.</span>
+                <span class="text-xs text-slate-500">Pai da Matilde (7 anos) • Coimbra</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testemunho 3 -->
+          <div class="flex flex-col justify-between p-6 sm:p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all border border-slate-200/80 reveal-on-scroll">
+            <div class="flex flex-col gap-4">
+              <div class="flex text-amber-400">
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+              <p class="text-sm sm:text-base text-slate-700 italic leading-relaxed">
+                “O progresso na pronúncia e na confiança a falar inglês é impressionante. Já canta as músicas no carro com pronúncia britânica perfeita!”
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-6 border-t border-slate-100 mt-6">
+              <div class="w-11 h-11 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 font-bold text-sm">
+                SM
+              </div>
+              <div class="flex flex-col">
+                <span class="text-sm font-bold text-slate-900">Sofia M.</span>
+                <span class="text-xs text-slate-500">Mãe do Rodrigo (4 anos) • Coimbra</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         FAQ INTERATIVO (Painéis que Expandem - naocodei.com)
+    ======================================================== -->
+    <section id="faq" class="py-16 lg:py-24 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center flex flex-col gap-3 reveal-on-scroll">
+          <span class="text-xs font-bold text-secondary uppercase tracking-widest">Tire as Suas Dúvidas</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-primary">Perguntas Frequentes</h2>
+          <p class="text-slate-600 text-sm sm:text-base">
+            Tudo o que os pais precisam de saber antes da aula experimental em Coimbra.
+          </p>
+        </div>
+
+        <div class="mt-10 flex flex-col gap-4 reveal-on-scroll">
+          
+          <!-- Pergunta 1 -->
+          <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden bg-surface-container-low transition-all">
+            <button class="faq-btn w-full p-5 text-left font-bold text-slate-800 flex items-center justify-between gap-4 focus:outline-none">
+              <span class="text-base sm:text-lg">Como funciona a Aula Experimental Gratuita?</span>
+              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
+            </button>
+            <div class="faq-content px-5 pb-5 pt-0 text-slate-600 text-sm sm:text-base leading-relaxed hidden">
+              A aula experimental é totalmente gratuita e sem qualquer compromisso. O seu filho participa numa dinâmica com outros alunos da mesma faixa etária enquanto os pais conhecem as instalações, os materiais didáticos e o professor responsável. É a melhor forma de ver os olhos da criança a brilhar!
+            </div>
+          </div>
+
+          <!-- Pergunta 2 -->
+          <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden bg-surface-container-low transition-all">
+            <button class="faq-btn w-full p-5 text-left font-bold text-slate-800 flex items-center justify-between gap-4 focus:outline-none">
+              <span class="text-base sm:text-lg">O meu filho não sabe nada de inglês. Pode começar mesmo assim?</span>
+              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
+            </button>
+            <div class="faq-content px-5 pb-5 pt-0 text-slate-600 text-sm sm:text-base leading-relaxed hidden">
+              Sim, com toda a certeza! O método Helen Doron foi desenhado para acolher crianças desde os 3 meses até adolescentes sem qualquer experiência prévia. As aulas são 100% em inglês com recursos visuais, mímica e música, permitindo uma compreensão contextual imediata.
+            </div>
+          </div>
+
+          <!-- Pergunta 3 -->
+          <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden bg-surface-container-low transition-all">
+            <button class="faq-btn w-full p-5 text-left font-bold text-slate-800 flex items-center justify-between gap-4 focus:outline-none">
+              <span class="text-base sm:text-lg">Qual é o número máximo de alunos por turma?</span>
+              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
+            </button>
+            <div class="faq-content px-5 pb-5 pt-0 text-slate-600 text-sm sm:text-base leading-relaxed hidden">
+              As turmas da Helen Doron são estritamente limitadas a um máximo de 4 a 8 alunos. Isto garante atenção individualizada e que cada criança tem tempo de voz para falar e interagir ativamente com o professor.
+            </div>
+          </div>
+
+          <!-- Pergunta 4 -->
+          <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden bg-surface-container-low transition-all">
+            <button class="faq-btn w-full p-5 text-left font-bold text-slate-800 flex items-center justify-between gap-4 focus:outline-none">
+              <span class="text-base sm:text-lg">Como funciona a escuta diária passiva em casa?</span>
+              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
+            </button>
+            <div class="faq-content px-5 pb-5 pt-0 text-slate-600 text-sm sm:text-base leading-relaxed hidden">
+              A escuta de fundo é a chave biológica do método: a criança ouve as faixas áudio Helen Doron durante 15 a 25 minutos por dia enquanto brinca, toma o pequeno-almoço ou no carro. Não é necessário prestar atenção forçada; o cérebro absorve a entoação, a fonética e a estrutura da frase naturalmente.
+            </div>
+          </div>
+
+          <!-- Pergunta 5 -->
+          <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden bg-surface-container-low transition-all">
+            <button class="faq-btn w-full p-5 text-left font-bold text-slate-800 flex items-center justify-between gap-4 focus:outline-none">
+              <span class="text-base sm:text-lg">Os professores são certificados?</span>
+              <span class="material-symbols-outlined faq-icon text-primary transition-transform duration-300">expand_more</span>
+            </button>
+            <div class="faq-content px-5 pb-5 pt-0 text-slate-600 text-sm sm:text-base leading-relaxed hidden">
+              Sim! Todos os nossos docentes passam por um rigoroso treino internacional certificado Helen Doron Educational Group, renovado anualmente com os mais recentes avanços da pedagogia infantil e linguística aplicada.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         FORMULÁRIO DE AGENDAMENTO (Com Efeito Confete naocodei)
+    ======================================================== -->
+    <section id="agendamento" class="w-full py-16 lg:py-24 bg-gradient-to-b from-surface to-surface-container scroll-mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 border border-slate-200/80 reveal-on-scroll">
+          
+          <!-- Banner Lateral do Formulário -->
+          <div class="lg:col-span-5 bg-gradient-to-br from-primary via-primary-dark to-[#002b49] p-8 sm:p-10 text-white flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-secondary/30 blur-2xl"></div>
+
+            <div class="flex flex-col gap-6 relative z-10">
+              <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center p-1 border border-white/20">
+                <img src="assets/logo-helen-doron.png" alt="Logo HD" class="w-full h-full object-contain" />
+              </div>
+              <div>
+                <span class="text-xs uppercase font-extrabold tracking-widest text-yellow-300">Vagas Limitadas</span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1 leading-tight">
+                  Reserve uma Aula Experimental Gratuita
+                </h3>
+              </div>
+              <p class="text-white/80 text-sm leading-relaxed">
+                Venha com o seu filho conhecer a nossa escola em Coimbra. Uma experiência alegre e esclarecedora sem custos.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-3 pt-6 border-t border-white/15 relative z-10 text-xs sm:text-sm">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-emerald-400 text-[18px]">verified</span>
+                <span>Turmas de 4 a 8 alunos</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-emerald-400 text-[18px]">verified</span>
+                <span>Acompanhamento personalizado</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-emerald-400 text-[18px]">verified</span>
+                <span>Diagnóstico pedagógico gratuito</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulário de Captação -->
+          <div class="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-center">
+            
+            <form id="leadForm" class="flex flex-col gap-4">
+              
+              <div class="flex flex-col gap-1">
+                <label for="parentName" class="text-xs font-bold text-slate-700">Nome do Encarregado de Educação *</label>
+                <input type="text" id="parentName" required placeholder="Ex.: Ana Santos" class="w-full h-11 px-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="flex flex-col gap-1">
+                  <label for="childName" class="text-xs font-bold text-slate-700">Nome da Criança *</label>
+                  <input type="text" id="childName" required placeholder="Ex.: Martim" class="w-full h-11 px-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" />
+                </div>
+                <div class="flex flex-col gap-1">
+                  <label for="childAge" class="text-xs font-bold text-slate-700">Faixa Etária *</label>
+                  <select id="childAge" required class="w-full h-11 px-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary shadow-sm">
+                    <option value="" disabled selected>Selecione a idade</option>
+                    <option value="babies">3 meses a 2 anos (Bebés)</option>
+                    <option value="kinder">3 a 5 anos (Infantil)</option>
+                    <option value="kids">6 a 11 anos (Básico)</option>
+                    <option value="teens">12+ anos (Teens / Cambridge)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="flex flex-col gap-1">
+                  <label for="phone" class="text-xs font-bold text-slate-700">Telemóvel / WhatsApp *</label>
+                  <input type="tel" id="phone" required placeholder="+351 912 345 678" class="w-full h-11 px-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" />
+                </div>
+                <div class="flex flex-col gap-1">
+                  <label for="email" class="text-xs font-bold text-slate-700">E-mail *</label>
+                  <input type="email" id="email" required placeholder="exemplo@email.com" class="w-full h-11 px-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" />
+                </div>
+              </div>
+
+              <div class="pt-2">
+                <button type="submit" class="btn-elastic w-full h-12 rounded-full bg-secondary hover:bg-secondary-dark text-white font-extrabold text-sm shadow-lg flex items-center justify-center gap-2">
+                  <span>Quero Agendar a Aula Gratuita</span>
+                  <span class="material-symbols-outlined text-[18px]">send</span>
+                </button>
+              </div>
+
+              <div class="flex items-center justify-center gap-1.5 text-slate-400 text-[11px] text-center pt-1">
+                <span class="material-symbols-outlined text-[14px]">lock</span>
+                <span>Os seus dados estão seguros. Contacto em menos de 24 horas úteis.</span>
+              </div>
+
+            </form>
+
+            <!-- Feedback de Sucesso com Confete -->
+            <div id="formSuccess" class="hidden flex flex-col items-center justify-center text-center py-8 gap-3">
+              <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                <span class="material-symbols-outlined text-4xl">celebration</span>
+              </div>
+              <h4 class="text-2xl font-extrabold text-primary">Pedido Registado com Sucesso!</h4>
+              <p class="text-slate-600 text-sm max-w-sm">
+                Obrigado pelo seu interesse! A nossa coordenadora pedagógica em Coimbra entrará em contacto muito em breve para agendar o dia e hora ideal.
+              </p>
+              <button onclick="document.getElementById('formSuccess').classList.add('hidden'); document.getElementById('leadForm').classList.remove('hidden');" class="mt-2 text-xs font-bold text-secondary hover:underline">
+                Submeter outro pedido
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         ONDE ESTAMOS EM COIMBRA: Mapa & Contactos Diretos
+    ======================================================== -->
+    <section id="contactos" class="w-full py-16 lg:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          
+          <!-- Contact Details -->
+          <div class="lg:col-span-5 flex flex-col gap-6 reveal-on-scroll">
+            <div>
+              <span class="text-xs font-bold text-secondary uppercase tracking-widest">Visite-nos</span>
+              <h2 class="text-3xl font-extrabold text-primary mt-1">Onde Estamos em Coimbra</h2>
+              <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+                Localização central com facilidade de acesso pedonal, transportes públicos e estacionamento conveniente nas imediações.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-4">
+              
+              <!-- Morada -->
+              <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface-container-low border border-slate-200/60">
+                <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[20px]">location_on</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-bold text-slate-800 text-sm">Morada</span>
+                  <span class="text-slate-600 text-xs sm:text-sm">Rua Padre Estêvão Cabral, Coimbra, Portugal</span>
+                  <span class="text-primary text-[11px] font-semibold mt-0.5">Próximo das principais vias urbanas de Coimbra</span>
+                </div>
+              </div>
+
+              <!-- Horário -->
+              <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface-container-low border border-slate-200/60">
+                <div class="w-10 h-10 rounded-xl bg-secondary text-white flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[20px]">schedule</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-bold text-slate-800 text-sm">Horário de Funcionamento</span>
+                  <div class="text-slate-600 text-xs mt-1 space-y-0.5">
+                    <div><strong>Segunda a Sexta:</strong> 09h30 – 19h30</div>
+                    <div><strong>Sábados:</strong> 09h00 – 13h00</div>
+                    <div><strong>Domingos:</strong> Encerrado</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contactos -->
+              <div class="flex items-start gap-4 p-4 rounded-2xl bg-surface-container-low border border-slate-200/60">
+                <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[20px]">phone</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-bold text-slate-800 text-sm">Contactos Diretos</span>
+                  <div class="flex flex-col mt-1">
+                    <a href="tel:+351239442407" class="text-primary font-bold text-sm hover:underline">+351 239 442 407</a>
+                    <a href="mailto:coimbra@helendoron.pt" class="text-slate-600 text-xs hover:text-primary">coimbra@helendoron.pt</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Mapa Visual & Imagem do Centro -->
+          <div class="lg:col-span-7 flex flex-col gap-4 reveal-on-scroll">
+            <div class="w-full h-80 lg:h-full min-h-[360px] bg-cover bg-center rounded-3xl shadow-lg relative overflow-hidden border border-slate-200" style="background-image: url('assets/card4-mapa.jpg');">
+              <div class="absolute inset-0 bg-primary/10 pointer-events-none"></div>
+              
+              <!-- Tag Flutuante com Direções -->
+              <div class="absolute bottom-6 left-6 right-6 sm:right-auto bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-100">
+                <div class="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-lg">school</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-bold text-xs sm:text-sm text-slate-900">Helen Doron English Coimbra</span>
+                  <span class="text-[11px] text-slate-500">Estacionamento nas imediações</span>
+                </div>
+                <a href="https://maps.google.com/?q=Rua+Padre+Estevao+Cabral+Coimbra" target="_blank" class="ml-auto btn-elastic bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-sm shrink-0">
+                  Como Chegar
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       FOOTER OFICIAL COM NOVO LOGÓTIPO CRISTALINO
+  ======================================================== -->
+  <footer class="w-full bg-slate-900 text-white py-14 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
+        
+        <!-- Col 1: Marca & Logótipo -->
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-full p-0.5 bg-gradient-to-tr from-secondary via-tertiary to-primary shadow-sm bg-white shrink-0 overflow-hidden flex items-center justify-center">
+              <img src="assets/logo-helen-doron.png" alt="Helen Doron Logo" class="w-full h-full object-contain rounded-full" />
+            </div>
+            <div class="flex flex-col">
+              <span class="font-extrabold text-lg text-white leading-tight">Helen Doron</span>
+              <span class="text-[10px] text-secondary font-bold tracking-widest uppercase">English Coimbra</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Líder mundial no ensino intuitivo de inglês dos 3 meses aos 19 anos. Metodologia natural, lúdica e comprovada internacionalmente desde 1985.
+          </p>
+          <div class="flex items-center gap-3 pt-1">
+            <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center text-white transition-colors">
+              <span class="material-symbols-outlined text-[16px]">public</span>
+            </a>
+            <a href="#" aria-label="Instagram" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-secondary flex items-center justify-center text-white transition-colors">
+              <span class="material-symbols-outlined text-[16px]">photo_camera</span>
+            </a>
+            <a href="#" aria-label="YouTube" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-red-600 flex items-center justify-center text-white transition-colors">
+              <span class="material-symbols-outlined text-[16px]">play_circle</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Contactos Rápidos -->
+        <div class="flex flex-col gap-3">
+          <h4 class="font-bold text-sm text-white">Localização & Contactos</h4>
+          <div class="flex items-start gap-2.5 text-xs text-slate-400">
+            <span class="material-symbols-outlined text-primary text-[18px] shrink-0">location_on</span>
+            <span>Rua Padre Estêvão Cabral, Coimbra, Portugal</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-xs text-slate-400">
+            <span class="material-symbols-outlined text-primary text-[18px] shrink-0">call</span>
+            <a href="tel:+351239442407" class="hover:text-white transition-colors">+351 239 442 407</a>
+          </div>
+          <div class="flex items-center gap-2.5 text-xs text-slate-400">
+            <span class="material-symbols-outlined text-primary text-[18px] shrink-0">mail</span>
+            <a href="mailto:coimbra@helendoron.pt" class="hover:text-white transition-colors">coimbra@helendoron.pt</a>
+          </div>
+        </div>
+
+        <!-- Col 3: Horários -->
+        <div class="flex flex-col gap-3">
+          <h4 class="font-bold text-sm text-white">Horário Letivo</h4>
+          <div class="text-xs text-slate-400 space-y-1">
+            <p><strong class="text-slate-300">Segunda a Sexta:</strong><br />09h30 – 19h30</p>
+            <p><strong class="text-slate-300">Sábados:</strong><br />09h00 – 13h00</p>
+            <p><strong class="text-slate-300">Domingos:</strong><br />Encerrado</p>
+          </div>
+        </div>
+
+        <!-- Col 4: Acreditações -->
+        <div class="flex flex-col gap-3">
+          <h4 class="font-bold text-sm text-white">Acreditações & Garantia</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Centro oficial Helen Doron Educational Group e centro preparatório autorizado para qualificações internacionais Cambridge English.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 text-[10px] font-bold">Cambridge English Prep</span>
+            <span class="px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 text-[10px] font-bold">QECR / CEFR</span>
+            <span class="px-2.5 py-1 rounded-full bg-secondary/20 text-secondary text-[10px] font-bold">Global Top Franchise</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>© 2025 Helen Doron English Coimbra. Todos os direitos reservados.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="hover:text-slate-300 transition-colors">Política de Privacidade</a>
+          <a href="#" class="hover:text-slate-300 transition-colors">Termos & Condições</a>
+          <a href="#" class="hover:text-slate-300 transition-colors">Livro de Reclamações</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       FLOATING WHATSAPP BUTTON COM RIPPLE PULSE (Estilo WSE)
+  ======================================================== -->
+  <a href="https://wa.me/351239442407?text=Ola!%20Gostaria%20de%20saber%20mais%20sobre%20as%20aulas%20na%20Helen%20Doron%20Coimbra." target="_blank" aria-label="Falar pelo WhatsApp" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#25D366] text-white px-4 py-3 rounded-full shadow-[0_8px_25px_rgba(37,211,102,0.4)] hover:scale-105 transition-all duration-300 group">
+    <div class="relative flex items-center justify-center">
+      <span class="w-3 h-3 rounded-full bg-white animate-ping absolute"></span>
+      <span class="material-symbols-outlined text-2xl">chat</span>
+    </div>
+    <span class="hidden sm:inline font-bold text-xs tracking-wide">Fale Connosco no WhatsApp</span>
+  </a>
+
+  <!-- ========================================================
+       SCRIPTS: Animações & Interatividade (naocodei.com + WSE)
+  ======================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // 1. Alternador de Palavras no Título (naocodei.com)
+      const words = ["brincadeiras.", "músicas divertidas.", "confiança.", "tecnologia e afeto.", "alegria pura."];
+      let wordIndex = 0;
+      const rotatingWordElem = document.getElementById('rotatingWord');
+      
+      if (rotatingWordElem) {
+        setInterval(() => {
+          rotatingWordElem.style.opacity = '0';
+          rotatingWordElem.style.transform = 'translateY(12px)';
+          setTimeout(() => {
+            wordIndex = (wordIndex + 1) % words.length;
+            rotatingWordElem.textContent = words[wordIndex];
+            rotatingWordElem.style.transform = 'translateY(-12px)';
+            setTimeout(() => {
+              rotatingWordElem.style.opacity = '1';
+              rotatingWordElem.style.transform = 'translateY(0)';
+            }, 40);
+          }, 350);
+        }, 2700);
+      }
+
+      // 2. Efeito Spotlight / Luz que Segue o Rato nos Cards
+      const spotlightCards = document.querySelectorAll('.spotlight-card');
+      spotlightCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+
+      // 3. Odómetro / Animated Counter
+      const counters = document.querySelectorAll('.counter-value');
+      let countersStarted = false;
+      const runCounters = () => {
+        counters.forEach(counter => {
+          const target = +counter.getAttribute('data-target');
+          let current = 0;
+          const increment = target / 35;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              counter.textContent = target + (target === 3 ? 'M+' : target === 40 ? '+' : '%');
+              clearInterval(timer);
+            } else {
+              counter.textContent = Math.ceil(current);
+            }
+          }, 35);
+        });
+      };
+
+      // 4. Reveal on Scroll com IntersectionObserver
+      const revealElements = document.querySelectorAll('.reveal-on-scroll');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            if (!countersStarted && entry.target.contains(counters[0])) {
+              countersStarted = true;
+              runCounters();
+            }
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealElements.forEach(el => observer.observe(el));
+
+      // 5. Tabs de Idades Interativas
+      const tabButtons = document.querySelectorAll('.age-tab-btn');
+      const tabContents = document.querySelectorAll('.age-tab-content');
+
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const age = btn.getAttribute('data-age');
+          
+          tabButtons.forEach(b => {
+            b.classList.remove('bg-primary', 'text-white', 'shadow-md');
+            b.classList.add('bg-surface-container', 'text-slate-700');
+          });
+          btn.classList.add('bg-primary', 'text-white', 'shadow-md');
+          btn.classList.remove('bg-surface-container', 'text-slate-700');
+
+          tabContents.forEach(content => {
+            content.classList.add('hidden');
+          });
+          const targetContent = document.getElementById(`tab-${age}`);
+          if (targetContent) {
+            targetContent.classList.remove('hidden');
+          }
+        });
+      });
+
+      // 6. Accordion FAQ com Transição Fluida
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const btn = item.querySelector('.faq-btn');
+        const content = item.querySelector('.faq-content');
+        const icon = item.querySelector('.faq-icon');
+
+        btn.addEventListener('click', () => {
+          const isOpened = !content.classList.contains('hidden');
+          
+          // Fechar todos
+          faqItems.forEach(otherItem => {
+            otherItem.querySelector('.faq-content').classList.add('hidden');
+            otherItem.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+          });
+
+          if (!isOpened) {
+            content.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
+          }
+        });
+      });
+
+      // 7. Submissão do Formulário com Efeito Confete
+      const leadForm = document.getElementById('leadForm');
+      const formSuccess = document.getElementById('formSuccess');
+
+      if (leadForm) {
+        leadForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          // Disparar Confetes (naocodei.com)
+          if (typeof confetti === 'function') {
+            confetti({
+              particleCount: 85,
+              spread: 70,
+              origin: { y: 0.6 }
+            });
+            setTimeout(() => {
+              confetti({
+                particleCount: 50,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 }
+              });
+              confetti({
+                particleCount: 50,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 }
+              });
+            }, 250);
+          }
+
+          leadForm.classList.add('hidden');
+          formSuccess.classList.remove('hidden');
+        });
+      }
+
+      // 8. Mobile Drawer Menu Toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+          link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+      }
+
+    });
+  </script>
+
+</body>
+</html>
